@@ -1,5 +1,5 @@
-let playerScore = 0;
-let computerScore = 0;
+let playerScore;
+let computerScore;
 
 function computerPlay(){
     let randomNumber = randomNum(); //Fetches a random number between 0 and 2 (inclusive).  
@@ -61,12 +61,13 @@ function playRound(playerSelection, computerSelection){
 }
 
 function game(){
+    playerScore = 0;
+    computerScore = 0;
     console.log("Welcome to a not-so-fun version of ROCK PAPER SCISSORS!")
     console.log("Available rounds: 5");
     for(let i = 0; i < 5; i++){
         const playerSelection = prompt("Choose your weapon!");
         const computerSelection = computerPlay();
-        console.log(computerSelection);
         console.log(playRound(playerSelection, computerSelection));
         console.log("Available rounds: " + (5-(i+1)));
         if(i == 4){
