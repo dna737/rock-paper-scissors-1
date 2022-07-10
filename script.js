@@ -1,6 +1,3 @@
-console.log("Welcome to a not-so-fun version of ROCK PAPER SCISSORS!")
-const playerSelection = prompt("Choose your weapon!");
-const computerSelection = computerPlay();
 let playerScore = 0;
 let computerScore = 0;
 
@@ -22,20 +19,58 @@ function randomNum(){
 
 
 function playRound(playerSelection, computerSelection){
-    if(playerSelection.equalsIgnoreCase(computerSelection)){
-        return "Uh oh! It's a TIE!";
+    let pSelection = playerSelection.toUpperCase(); //This takes care of casing problems from the user input.
+    if(pSelection == computerSelection.toUpperCase()){
+        return "Uh oh! Both the players chose "+ computerSelection + "\nYour score: " + playerScore + ". Computer's score: " + computerScore;
     }
 
-    if(playerSelection.equalsIgnoreCase("Rock")){
-        if(computerSelection.equalsIgnoreCase("Scissors")){
-            ++playerScore;
-            return playerSelection
+    switch(pSelection){
+        case "ROCK":{
+            if(computerSelection.toUpperCase() === ("PAPER")){
+                ++computerScore;
+                return "You chose " + playerSelection +", and the computer chose " + computerSelection + "\nYou lose! " + computerSelection + " beats " + playerSelection + "!\nYour score: " + playerScore + ". Computer's score: " + computerScore;
+            }
+            if(computerSelection.toUpperCase() === ("SCISSORS")){
+                ++playerScore;
+                return "You chose " + playerSelection +", and the computer chose " + computerSelection +"\nYou win! " + playerSelection + " beats " + computerSelection +  "!\nYour score: " + playerScore + ". Computer's score: " + computerScore;
+            }
+            break;
+        }
+        case "PAPER": {
+            if(computerSelection.toUpperCase() === ("ROCK")){
+                ++playerScore;
+                return "You chose " + playerSelection +", and the computer chose " + computerSelection +"\nYou win! " + playerSelection + " beats " + computerSelection +  "!\nYour score: " + playerScore + ". Computer's score: " + computerScore;
+            }
+            if(computerSelection.toUpperCase() === ("SCISSORS")){
+                ++computerScore;
+                return "You chose " + playerSelection +", and the computer chose " + computerSelection +"\nYou lose! " + computerSelection + " beats " + playerSelection + "!\nYour score: " + playerScore + ". Computer's score: " + computerScore;
+            }
+            break;
+        }
+        case "SCISSORS":{
+            if(computerSelection.toUpperCase() === ("ROCK")){
+                ++computerScore;
+                return "You chose " + playerSelection +", and the computer chose " + computerSelection +"\nYou lose! " + computerSelection + " beats " + playerSelection + "!\nYour score: " + playerScore + ". Computer's score: " + computerScore;
+            }
+            if(computerSelection.toUpperCase() === ("PAPER")){
+                ++playerScore;
+                return "You chose " + playerSelection +", and the computer chose " + computerSelection +"\nYou win! " + playerSelection + " beats " + computerSelection +  "!\nYour score: " + playerScore + ". Computer's score: " + computerScore;
+            }
         }
     }
 }
 
 function game(){
+    console.log("Welcome to a not-so-fun version of ROCK PAPER SCISSORS!")
+    console.log("Available rounds: 5");
     for(let i = 0; i < 5; i++){
+        const playerSelection = prompt("Choose your weapon!");
+        const computerSelection = computerPlay();
+        console.log(computerSelection);
         console.log(playRound(playerSelection, computerSelection));
+        console.log("Available rounds: " + (5-(i+1)));
+        if(i == 4){
+            console.log("Thanks for playing! Please type \"game()\" to start a new match!")
+        }
     }
 }
