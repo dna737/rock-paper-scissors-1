@@ -1,5 +1,6 @@
 let playerScore;
 let computerScore;
+console.log("Hey, you. You're finally awake. Type \"game()\" to start wasting your time.")
 
 function computerPlay(){
     let randomNumber = randomNum(); //Fetches a random number between 0 and 2 (inclusive).  
@@ -63,15 +64,22 @@ function playRound(playerSelection, computerSelection){
 function game(){
     playerScore = 0;
     computerScore = 0;
-    console.log("Welcome to a not-so-fun version of ROCK PAPER SCISSORS!")
-    console.log("Available rounds: 5");
-    for(let i = 0; i < 5; i++){
+    console.log("Welcome to a not-so-fun version of ROCK PAPER SCISSORS! First to 5 wins!")
+    while(playerScore != 5 && computerScore != 5){
         const playerSelection = prompt("Choose your weapon!");
         const computerSelection = computerPlay();
         console.log(playRound(playerSelection, computerSelection));
-        console.log("Available rounds: " + (5-(i+1)));
-        if(i == 4){
-            console.log("Thanks for playing! Please type \"game()\" to start a new match!")
-        }
+        
     }
+    if(playerScore > computerScore){
+        console.log("Congratulations! You win!");
+    }
+    else if(playerScore < computerScore){
+        console.log("Oops! You lost :(");
+    }
+    else{
+        console.log("It's a draw!");
+    }
+    console.log("Thanks for playing! Please type \"game()\" to start a new match!");
+
 }
