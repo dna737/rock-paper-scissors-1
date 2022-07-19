@@ -1,9 +1,49 @@
-let playerScore;
-let computerScore;
-console.log("Hey, you. You're finally awake. Type \"game()\" to start wasting your time.")
+let playerScore = 0;
+let computerScore = 0;
+const button1 = document.querySelector('.rock');
+const button2 = document.querySelector('.paper');
+const button3 = document.querySelector('.scissors');
+
+let playerSelection = "";
+let body = document.querySelector('body'); 
+let div = document.createElement('div');   
+
+button1.addEventListener('click', () =>{
+    playerSelection = button1.classList.value;      
+    let computerSelection = computerPlay();
+    div.textContent = playRound(playerSelection, computerSelection);
+    body.appendChild(div);  
+});
+
+button2.addEventListener('click', () =>{
+    playerSelection = button2.classList.value;
+    let computerSelection = computerPlay();
+    div.textContent = playRound(playerSelection, computerSelection);
+    body.appendChild(div);  
+});
+
+button3.addEventListener('click', () =>{
+    playerSelection = button3.classList.value;
+    let computerSelection = computerPlay();
+    div.textContent = playRound(playerSelection, computerSelection);
+    body.appendChild(div);  
+});
+
+if(playerScore === 5) {
+    div.textContent = "You win!";
+    body.appendChild(div);          
+
+}
+if(computerScore == 5) {
+    div.textContent = "You lose!";
+    body.appendChild(div);  
+    
+}
+
+
 
 function computerPlay(){
-    let randomNumber = randomNum(); //Fetches a random number between 0 and 2 (inclusive).  
+    let randomNumber = randomNum(); //Fetches a random number betweens 0 and 2 (inclusive).  
     if(randomNumber == 0){
         return "Rock";
     }else if(randomNumber == 1){
@@ -20,6 +60,7 @@ function randomNum(){
 
 
 function playRound(playerSelection, computerSelection){
+    if(playerScore < 5 && computerScore < 5){
     let pSelection = playerSelection.toUpperCase(); //This takes care of casing problems from the user input.
     if(pSelection == computerSelection.toUpperCase()){
         return "Uh oh! Both the players chose "+ computerSelection + "\nYour score: " + playerScore + ". Computer's score: " + computerScore;
@@ -59,29 +100,39 @@ function playRound(playerSelection, computerSelection){
             }
         }
     }
+}else{
+    if(computerScore > playerScore){
+        div.textContent = "You lose :(";
+        body.appendChild(div);
+    }else{
+        div.textContent = "You win!";
+    body.appendChild(div);  
+    
+    }
 }
-
-function game(){
-    playerScore = 0;
-    computerScore = 0;
-    console.log("Welcome to a not-so-fun version of ROCK PAPER SCISSORS! First to 5 wins!")
-    while(playerScore != 5 && computerScore != 5){
-        const playerSelection = prompt("Choose your weapon!");
-        const computerSelection = computerPlay();
-        console.log(playRound(playerSelection, computerSelection));
-        
-    }
-    if(playerScore > computerScore){
-        console.log("Congratulations! You win!");
-    }
-    else if(playerScore < computerScore){
-        console.log("Oops! You lost :(");
-    }
-    else{
-        console.log("It's a draw!");
-    }
-    console.log("Thanks for playing! Please type \"game()\" to start a new match!");
-
 }
 
 
+
+// function game(){
+    
+   
+    
+
+//     if(playerScore !== 5 && computerScore !== 5){
+    
+   
+
+// }
+// }
+
+
+    // while(playerScore !== 5 && computerScore !== 5){
+    // const computerSelection = computerPlay(); 
+
+
+
+//code that was added for the new GUI version:
+//what to add: an image-hover effect that tells the user:
+//"Times played", "Beats:" , and "Weakness: "
+//i want to use #10 from: https://codepen.io/nxworld/pen/ZYNOBZ
