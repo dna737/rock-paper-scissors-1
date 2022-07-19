@@ -3,6 +3,10 @@ let computerScore = 0;
 const button1 = document.querySelector('.rock');
 const button2 = document.querySelector('.paper');
 const button3 = document.querySelector('.scissors');
+let yourScore = document.querySelector('.yourScoreValue');
+yourScore.textContent = "0";
+let compScore = document.querySelector('.compScoreValue');
+compScore.textContent = "0";
 
 let playerSelection = "";
 let body = document.querySelector('body'); 
@@ -70,10 +74,13 @@ function playRound(playerSelection, computerSelection){
         case "ROCK":{
             if(computerSelection.toUpperCase() === ("PAPER")){
                 ++computerScore;
+                compScore.textContent = computerScore;
                 return "You chose " + playerSelection +", and the computer chose " + computerSelection + "\nYou lose! " + computerSelection + " beats " + playerSelection + "!\nYour score: " + playerScore + ". Computer's score: " + computerScore;
             }
             if(computerSelection.toUpperCase() === ("SCISSORS")){
                 ++playerScore;
+                yourScore.textContent = playerScore;
+
                 return "You chose " + playerSelection +", and the computer chose " + computerSelection +"\nYou win! " + playerSelection + " beats " + computerSelection +  "!\nYour score: " + playerScore + ". Computer's score: " + computerScore;
             }
             break;
@@ -81,10 +88,14 @@ function playRound(playerSelection, computerSelection){
         case "PAPER": {
             if(computerSelection.toUpperCase() === ("ROCK")){
                 ++playerScore;
+                yourScore.textContent = playerScore;
+
                 return "You chose " + playerSelection +", and the computer chose " + computerSelection +"\nYou win! " + playerSelection + " beats " + computerSelection +  "!\nYour score: " + playerScore + ". Computer's score: " + computerScore;
             }
             if(computerSelection.toUpperCase() === ("SCISSORS")){
                 ++computerScore;
+                compScore.textContent = computerScore;
+
                 return "You chose " + playerSelection +", and the computer chose " + computerSelection +"\nYou lose! " + computerSelection + " beats " + playerSelection + "!\nYour score: " + playerScore + ". Computer's score: " + computerScore;
             }
             break;
@@ -92,10 +103,13 @@ function playRound(playerSelection, computerSelection){
         case "SCISSORS":{
             if(computerSelection.toUpperCase() === ("ROCK")){
                 ++computerScore;
+                compScore.textContent = computerScore;
+
                 return "You chose " + playerSelection +", and the computer chose " + computerSelection +"\nYou lose! " + computerSelection + " beats " + playerSelection + "!\nYour score: " + playerScore + ". Computer's score: " + computerScore;
             }
             if(computerSelection.toUpperCase() === ("PAPER")){
                 ++playerScore;
+                yourScore.textContent = playerScore;
                 return "You chose " + playerSelection +", and the computer chose " + computerSelection +"\nYou win! " + playerSelection + " beats " + computerSelection +  "!\nYour score: " + playerScore + ". Computer's score: " + computerScore;
             }
         }
@@ -113,26 +127,3 @@ function playRound(playerSelection, computerSelection){
 }
 
 
-
-// function game(){
-    
-   
-    
-
-//     if(playerScore !== 5 && computerScore !== 5){
-    
-   
-
-// }
-// }
-
-
-    // while(playerScore !== 5 && computerScore !== 5){
-    // const computerSelection = computerPlay(); 
-
-
-
-//code that was added for the new GUI version:
-//what to add: an image-hover effect that tells the user:
-//"Times played", "Beats:" , and "Weakness: "
-//i want to use #10 from: https://codepen.io/nxworld/pen/ZYNOBZ

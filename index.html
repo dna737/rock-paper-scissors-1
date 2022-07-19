@@ -18,11 +18,20 @@
     <div class="compScore">Computer's score
         <div class="compScoreValue">0</div>
     </div>
-    <div class="options">
-        <img src="./images/rock.jpg" alt="clipart of a rock">
-        <img src="./images/paper.jpg" alt="clipart of a sheet of paper">
-        <img src="./images/scissors.jpg" alt="clipart of a pair of scissors">
     </div>
+    <div class="options">
+        <figure><button class="rock"><img src="./images/rock.jpg" alt="clipart of a rock"></button></figure>
+        <figure><button class="paper"><img src="./images/paper.jpg" alt="clipart of a sheet of paper"></button></figure>
+        <figure><button class="scissors"><img src="./images/scissors.jpg" alt="clipart of a pair of scissors"></button></figure>
+    </div>
+    <!--Information that needs to be appended after understanding the image hover effect:-->
+    <div class="rockStats hide">
+        ROCK <br>       
+        Beats: Scissors<br>
+        Weakness: Paper
+    </div>
+    <!--until this part-->
+    <div class="output"></div>
     <script src="./script.js"></script>
 </body>
 </html>
