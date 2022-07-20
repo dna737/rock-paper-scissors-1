@@ -11,6 +11,8 @@ compScore.textContent = "0";
 let playerSelection = "";
 let body = document.querySelector('body'); 
 let div = document.createElement('div');   
+div.setAttribute('align', 'center');
+div.style.marginTop = "24px";
 
 button1.addEventListener('click', () =>{
     playerSelection = button1.classList.value;      
@@ -33,16 +35,7 @@ button3.addEventListener('click', () =>{
     body.appendChild(div);  
 });
 
-if(playerScore === 5) {
-    div.textContent = "You win!";
-    body.appendChild(div);          
 
-}
-if(computerScore == 5) {
-    div.textContent = "You lose!";
-    body.appendChild(div);  
-    
-}
 
 
 
@@ -67,7 +60,7 @@ function playRound(playerSelection, computerSelection){
     if(playerScore < 5 && computerScore < 5){
     let pSelection = playerSelection.toUpperCase(); //This takes care of casing problems from the user input.
     if(pSelection == computerSelection.toUpperCase()){
-        return "Uh oh! Both the players chose "+ computerSelection + "\nYour score: " + playerScore + ". Computer's score: " + computerScore;
+        return "Uh oh! Both the players chose "+ computerSelection;
     }
 
     switch(pSelection){
@@ -75,13 +68,13 @@ function playRound(playerSelection, computerSelection){
             if(computerSelection.toUpperCase() === ("PAPER")){
                 ++computerScore;
                 compScore.textContent = computerScore;
-                return "You chose " + playerSelection +", and the computer chose " + computerSelection + "\nYou lose! " + computerSelection + " beats " + playerSelection + "!\nYour score: " + playerScore + ". Computer's score: " + computerScore;
+                return "You chose " + playerSelection +", and the computer chose " + computerSelection + "\nYou lose! " + computerSelection + " beats " + playerSelection 
             }
             if(computerSelection.toUpperCase() === ("SCISSORS")){
                 ++playerScore;
                 yourScore.textContent = playerScore;
 
-                return "You chose " + playerSelection +", and the computer chose " + computerSelection +"\nYou win! " + playerSelection + " beats " + computerSelection +  "!\nYour score: " + playerScore + ". Computer's score: " + computerScore;
+                return "You chose " + playerSelection +", and the computer chose " + computerSelection +"\nYou win! " + playerSelection + " beats " + computerSelection
             }
             break;
         }
@@ -90,13 +83,13 @@ function playRound(playerSelection, computerSelection){
                 ++playerScore;
                 yourScore.textContent = playerScore;
 
-                return "You chose " + playerSelection +", and the computer chose " + computerSelection +"\nYou win! " + playerSelection + " beats " + computerSelection +  "!\nYour score: " + playerScore + ". Computer's score: " + computerScore;
+                return "You chose " + playerSelection +", and the computer chose " + computerSelection +"\nYou win! " + playerSelection + " beats " + computerSelection
             }
             if(computerSelection.toUpperCase() === ("SCISSORS")){
                 ++computerScore;
                 compScore.textContent = computerScore;
 
-                return "You chose " + playerSelection +", and the computer chose " + computerSelection +"\nYou lose! " + computerSelection + " beats " + playerSelection + "!\nYour score: " + playerScore + ". Computer's score: " + computerScore;
+                return "You chose " + playerSelection +", and the computer chose " + computerSelection +"\nYou lose! " + computerSelection + " beats " + playerSelection 
             }
             break;
         }
@@ -105,23 +98,29 @@ function playRound(playerSelection, computerSelection){
                 ++computerScore;
                 compScore.textContent = computerScore;
 
-                return "You chose " + playerSelection +", and the computer chose " + computerSelection +"\nYou lose! " + computerSelection + " beats " + playerSelection + "!\nYour score: " + playerScore + ". Computer's score: " + computerScore;
+                return "You chose " + playerSelection +", and the computer chose " + computerSelection +"\nYou lose! " + computerSelection + " beats " + playerSelection 
             }
             if(computerSelection.toUpperCase() === ("PAPER")){
                 ++playerScore;
                 yourScore.textContent = playerScore;
-                return "You chose " + playerSelection +", and the computer chose " + computerSelection +"\nYou win! " + playerSelection + " beats " + computerSelection +  "!\nYour score: " + playerScore + ". Computer's score: " + computerScore;
+                return "You chose " + playerSelection +", and the computer chose " + computerSelection +"\nYou win! " + playerSelection + " beats " + computerSelection
             }
         }
     }
 }else{
-    if(computerScore > playerScore){
-        div.textContent = "You lose :(";
-        body.appendChild(div);
-    }else{
-        div.textContent = "You win!";
-    body.appendChild(div);  
     
+    if(computerScore > playerScore){
+        const refreshPage = document.querySelector('.refresh');
+        const refreshButton = document.createElement('button');
+        refreshPage.appendChild(refreshButton); 
+        refreshButton.addEventListener('click', () => {window.location.reload()});
+        return "You lost. Better luck next time!"
+    }else{
+        const refreshPage = document.querySelector('.refresh');
+        refreshPage.setAttribute('display', 'block');
+        const refreshButton = document.querySelector('.refreshButton');
+        refreshButton.addEventListener('click', () => {window.location.reload()});
+        return "You won! Congratulations!" 
     }
 }
 }
